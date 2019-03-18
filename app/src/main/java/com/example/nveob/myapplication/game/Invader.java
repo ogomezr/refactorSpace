@@ -7,12 +7,14 @@ import android.graphics.RectF;
 
 import com.example.nveob.myapplication.R;
 
+import java.util.Random;
+
 public class Invader {
     
     private RectF rectf;
 
     // bitmap que representa la nev del jugador
-    private Bitmap bitmap;
+    protected Bitmap bitmap;
 
     // lo alto que va a estar el marciano
     private float length;
@@ -41,8 +43,8 @@ public class Invader {
 
     public Invader(Context context, int row, int column, int screenY , int screenX ){
         rectf = new RectF();
-        length = screenX /15;
-        height = screenY /15;
+        length = (float)screenX /15;
+        height = (float)screenY /15;
 
         isVisible = true;
 
@@ -54,23 +56,15 @@ public class Invader {
 
         bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.invader1);
 
+        bitmap = Bitmap.createScaledBitmap(bitmap,
+                (int) (screenX/20),
+                (int) (screenY/20),
+                false);
+
         shipSpeed = 100;
     }
 
-    public Invader(Context context, int x, int y, int screenY, int screenX, boolean extra){
-        rectf = new RectF();
-        length = screenX/15;
-        height = screenY/15;
 
-        isVisible = true;
-        y = y;
-        x = x;
-
-        bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.invader3);
-
-        shipSpeed = 300;
-
-    }
 
     public void setVisible(){
         this.isVisible = true;
@@ -142,8 +136,9 @@ public class Invader {
     }
 
     public boolean takeAim(){
-        int random = (int) Math.random()*10 +1;
-        if(random==1){
+        Random r = new Random();
+        int t = r.nextInt(300);
+        if(t==1){
             return true;
         }else{
             return false;
