@@ -41,6 +41,8 @@ public class Invader {
     //Tiene color inicial
     private boolean incialcolor = true;
 
+    private static Random r = new Random();
+
     public Invader(Context context, int row, int column, int screenY , int screenX ){
         rectf = new RectF();
         length = (float)screenX /15;
@@ -136,7 +138,7 @@ public class Invader {
     }
 
     public boolean takeAim(){
-        Random r = new Random();
+
         int t = r.nextInt(300);
         if(t==1){
             return true;

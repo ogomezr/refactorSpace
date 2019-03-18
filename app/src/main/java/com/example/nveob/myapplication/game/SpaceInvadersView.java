@@ -103,6 +103,7 @@ public class SpaceInvadersView extends SurfaceView implements Runnable {
 
     // cuando se inicializa el gameview
     // This special constructor method runs
+    private static Random r = new Random();
     public SpaceInvadersView(Context context, int x, int y, Activity gameActivity, Boolean adult) {
 
         super(context);
@@ -185,7 +186,7 @@ public void run() {
 
         // capturamos el tiempo en milisegundos
         long startFrameTime = System.currentTimeMillis();
-        this.time.run();
+        this.time.start();
 
         // actualizamos el frame
         if (!paused) {
@@ -359,7 +360,7 @@ public void run() {
         if(imp){
             change();
         }
-        Random r = new Random();
+
         int t = r.nextInt(150);
         //aparecer y desaparecer nave
         if (t==2){
